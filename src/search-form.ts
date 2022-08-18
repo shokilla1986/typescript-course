@@ -1,6 +1,22 @@
 import { renderBlock } from './lib.js'
 
-export function renderSearchFormBlock () {
+export function renderSearchFormBlock() {
+  function addZero(num) {
+	if (num >= 0 && num <= 9) {
+		return '0' + num;
+	} else {
+		return num;
+	}
+}
+  const date = new Date();
+  const currentDate = `${date.getFullYear()}-${addZero(date.getMonth() + 1)}-${addZero(date.getDate())}`
+  const lastDay = new Date()
+  lastDay.setFullYear(date.getFullYear(), date.getMonth() + 2, 0)
+  const maxDate = `${lastDay.getFullYear()}-${addZero(lastDay.getMonth() +1 )}-${lastDay.getDate()}`
+  console.log(currentDate);  
+  console.log(lastDay);
+  console.log(maxDate);
+  
   renderBlock(
     'search-form-block',
     `
@@ -20,7 +36,7 @@ export function renderSearchFormBlock () {
         <div class="row">
           <div>
             <label for="check-in-date">Дата заезда</label>
-            <input id="check-in-date" type="date" value="2021-05-11" min="2021-05-11" max="2021-06-30" name="checkin" />
+            <input id="check-in-date" type="date" value=${currentDate} min=${currentDate} max=${maxDate} name="checkin" />
           </div>
           <div>
             <label for="check-out-date">Дата выезда</label>
