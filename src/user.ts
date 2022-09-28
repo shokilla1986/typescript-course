@@ -1,6 +1,17 @@
 import { renderBlock } from './lib.js'
 
-export function renderUserBlock (userName:string, userAvatar:string,favoriteItemsAmount:number) {
+
+//функции к 1 пункту дз
+export function getUserData(key) { 
+  return localStorage.getItem(key)
+}
+
+export function getFavoritesAmount(key) {
+  return localStorage.getItem(key)
+}
+
+
+export function renderUserBlock (userName:string, userAvatar:string,favoriteItemsAmount?:number): void {
   const favoritesCaption = favoriteItemsAmount > 1 ? favoriteItemsAmount : 'ничего нет'
   const hasFavoriteItems = favoriteItemsAmount > 1  ? true : false
  
@@ -19,3 +30,4 @@ export function renderUserBlock (userName:string, userAvatar:string,favoriteItem
     `
   )
 }
+
