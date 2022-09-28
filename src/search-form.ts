@@ -9,6 +9,23 @@ function addZero(num) {
   }
 }
 
+//интерфейс ко второму пункту дз
+interface SearchFormDataI {
+  startRentDate: string,
+  checkOutDate: string,
+  maxPrice?: number
+}
+
+//функция ко второму пункту дз
+function search(startRentDate:string, checkOutDate:string, maxPrice?:number | null) {
+  findArgument(startRentDate);
+  findArgument(checkOutDate);
+  findArgument(maxPrice);
+}
+
+function findArgument(arg): void {
+  console.log(arg);  
+}
 //в комментариях код для варианта с переданными
 
 export function renderSearchFormBlock() { 
@@ -19,7 +36,10 @@ export function renderSearchFormBlock() {
   const lastDay = new Date()
   lastDay.setFullYear(date.getFullYear(), date.getMonth() + 2, 0)
   const maxDate = `${lastDay.getFullYear()}-${addZero(lastDay.getMonth() + 1)}-${lastDay.getDate()}`
+
   let checkOutDate = '';  
+  let maxPrice=0;
+
 
   function handlerSubmitForm(event) {
     event.preventDefault();
@@ -29,6 +49,7 @@ export function renderSearchFormBlock() {
     const checkinDate = new Date(checkInArr[0], Number(checkInArr[1]) - 1, Number(checkInArr[2]) + 2)
     checkOutDate = `${checkinDate.getFullYear()}-${addZero(checkinDate.getMonth() + 1)}-${addZero(checkinDate.getDate())}`
     form.checkout.min = checkOutDate;    
+    form.checkout.price = maxPrice;    
   }
 
 
@@ -60,7 +81,7 @@ export function renderSearchFormBlock() {
           </div>
           <div>
             <label for="max-price">Макс. цена суток</label>
-            <input id="max-price" type="text" value="" name="price" class="max-price" />
+            <input id="max-price" type="text" value=${maxPrice} name="price" class="max-price" />
           </div>
           <div>
             <div><button>Найти</button></div>
@@ -75,7 +96,8 @@ export function renderSearchFormBlock() {
   const form = document.querySelector('form');
   
   form.addEventListener('change', handlerSubmitForm)
-    
+  //вызываем функции search
+  search(startRentDate, checkOutDate, maxPrice)
 }
 
 
