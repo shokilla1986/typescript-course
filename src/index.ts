@@ -3,7 +3,7 @@ import { renderSearchStubBlock } from "./search-results.js";
 import { getFavoritesAmount, getUserData, renderUserBlock } from "./user.js";
 import { renderToast } from "./lib.js";
 import { UserI } from "./interfaces.js";
-import { APILocal } from "./APILocal";
+import { APILocal } from "./APILocal.js";
 //в комментариях код для варианта с переданными датами
 //даты для функции
 // const dateIn = '25-09-2022';

@@ -1,15 +1,15 @@
-import { renderBlock } from './lib.js';
+import { renderBlock } from "./lib.js";
 
-import { UserI } from './interfaces.js';
-import { APILocal } from './APILocal';
+import { UserI } from "./interfaces.js";
+import { APILocal } from "./APILocal.js";
 
 //функции к 1 пункту дз
 export function getUserData(key): UserI | null {
   const lsUser = APILocal.get(key);
   if (lsUser) {
     const user = JSON.parse(lsUser);
-    if (typeof user === 'object' && 'userName' in user && 'avatarUrl' in user) {
-      return { userName: user['userName'], avatarUrl: user['avatarUrl'] };
+    if (typeof user === "object" && "userName" in user && "avatarUrl" in user) {
+      return { userName: user["userName"], avatarUrl: user["avatarUrl"] };
     }
   }
 
@@ -31,11 +31,11 @@ export function renderUserBlock(
   favoriteItemsAmount?: number
 ): void {
   const favoritesCaption =
-    favoriteItemsAmount > 1 ? favoriteItemsAmount : 'ничего нет';
+    favoriteItemsAmount > 1 ? favoriteItemsAmount : "ничего нет";
   const hasFavoriteItems = favoriteItemsAmount > 1 ? true : false;
 
   renderBlock(
-    'user-block',
+    "user-block",
     `
     <div class="header-container">
       <img class="avatar" src="${userAvatar}" alt="${userName}" />
@@ -43,8 +43,8 @@ export function renderUserBlock(
           <p class="name">${userName}</p>
           <p class="fav">
             <i class="heart-icon${
-  hasFavoriteItems ? ' active' : ''
-}"></i>${favoritesCaption}
+              hasFavoriteItems ? " active" : ""
+            }"></i>${favoritesCaption}
           </p>
       </div>
     </div>
